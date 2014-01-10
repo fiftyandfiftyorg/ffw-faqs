@@ -102,6 +102,7 @@ final class FFW_FAQS {
     require_once FFW_FAQS_PLUGIN_DIR . '/includes/posttypes.php';
     require_once FFW_FAQS_PLUGIN_DIR . '/includes/scripts.php';
     require_once FFW_FAQS_PLUGIN_DIR . '/includes/shortcodes.php';
+    require_once FFW_FAQS_PLUGIN_DIR . '/includes/template-functions.php';
 
     if( is_admin() ){
         //Admin Required Plugin Files

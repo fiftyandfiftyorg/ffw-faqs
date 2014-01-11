@@ -22,6 +22,12 @@ function ffw_faqs_list_shortcode( $post ){
 
         foreach( $terms as $term ) { 
 
+            $args = array(
+                'taxonomy'  => $taxonomy,
+                'term'      => $term->slug,
+                'orderby'   => 'title',
+                'order'     => 'ASC'
+                );
             $posts = new WP_Query( "taxonomy=$taxonomy&term=$term->slug" );
             
             if( $posts->have_posts() ) : ?>

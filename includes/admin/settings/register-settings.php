@@ -153,17 +153,10 @@ function ffw_faqs_get_registered_settings() {
                     'size' => 'medium',
                     'std' => ffw_faqs_get_label_singular()
                 ),
-                'faqs_enable_sidebar' => array(
-                    'id' => 'faqs_enable_sidebar',
-                    'name' => __( ffw_faqs_get_label_singular() . ' Sidebar', 'ffw_faqs' ),
-                    'desc' => __( 'Enable ' . ffw_faqs_get_label_singular() . ' sidebars', 'ffw_faqs' ),
-                    'type' => 'checkbox',
-                    'std' => ''
-                ),
-                'faqs_disable_link_to_single' => array(
-                    'id' => 'faqs_disable_link_to_single',
-                    'name' => __( 'Disable Link', 'ffw_faqs' ),
-                    'desc' => __( 'Disable clicking through to the single detail.', 'ffw_faqs' ),
+                'disable_styles' => array(
+                    'id' => 'disable_styles',
+                    'name' => __( 'Disable Styles', 'ffw_faqs' ),
+                    'desc' => __( 'Check to disable default styles', 'ffw_faqs' ),
                     'type' => 'checkbox',
                     'std' => ''
                 ),

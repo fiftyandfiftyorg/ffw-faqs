@@ -15,14 +15,17 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  * @return [type] [description]
  */
 function ffw_faqs_load_plugin_scripts() {
- 
+    
+    global $ffw_faqs_settings;
  
     wp_enqueue_script('jquery');
     
     wp_register_script('ffw-faq-accordion', FFW_FAQS_PLUGIN_URL . 'assets/js/ffw-faqs-accordion.js', array( 'jquery', 'jquery-ui-accordion' ), FFW_FAQS_VERSION, true );
     wp_enqueue_script( 'ffw-faq-accordion' );
 
-    wp_enqueue_style('ffw_faqs_shortcode_styles', FFW_FAQS_PLUGIN_URL . 'assets/css/ffw-faq-styles.css');
+    if( !isset( $ffw_faqs_settings['disable_styles'] ) ) {
+        wp_enqueue_style('ffw_faqs_shortcode_styles', FFW_FAQS_PLUGIN_URL . 'assets/css/ffw-faq-styles.css');
+    }
 
 }
 add_action('wp_enqueue_scripts', 'ffw_faqs_load_plugin_scripts');

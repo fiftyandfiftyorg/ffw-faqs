@@ -64,7 +64,7 @@ function setup_ffw_faqs_post_types() {
 		'has_archive' 		=> $archives,
 		'show_in_nav_menus'	=> true,
 		'hierarchical' 		=> false,
-		'supports' 			=> apply_filters( 'ffw_faqs_supports', array( '' ) ),
+		'supports' 			=> apply_filters( 'ffw_faqs_supports', array( 'title', 'editor', 'thumbnail' ) ),
 	);
 	register_post_type( 'ffw_faqs', apply_filters( 'ffw_faqs_post_type_args', $faq_args ) );
 	
@@ -129,8 +129,8 @@ function ffw_faqs_change_default_title( $title ) {
      $screen = get_current_screen();
 
      if  ( 'ffw_faqs' == $screen->post_type ) {
-     	$label = ffw_faqs_get_label_singular();
-        $title = sprintf( __( 'Enter %s title here', 'ffw_faqs' ), $label );
+     	$label = 'question';
+        $title = sprintf( __( 'Enter %s here', 'ffw_faqs' ), $label );
      }
 
      return $title;
@@ -147,33 +147,33 @@ function ffw_faqs_setup_taxonomies() {
 
 	$slug     = defined( 'FFW_FAQS_SLUG' ) ? FFW_FAQS_SLUG : 'staff';
 
-	/** Categories */
-	$category_labels = array(
-		'name' 				=> sprintf( _x( '%s Categories', 'taxonomy general name', 'ffw_faqs' ), ffw_faqs_get_label_singular() ),
-		'singular_name' 	=> _x( 'Category', 'taxonomy singular name', 'ffw_faqs' ),
-		'search_items' 		=> __( 'Search Categories', 'ffw_faqs'  ),
-		'all_items' 		=> __( 'All Categories', 'ffw_faqs'  ),
-		'parent_item' 		=> __( 'Parent Category', 'ffw_faqs'  ),
-		'parent_item_colon' => __( 'Parent Category:', 'ffw_faqs'  ),
-		'edit_item' 		=> __( 'Edit Category', 'ffw_faqs'  ),
-		'update_item' 		=> __( 'Update Category', 'ffw_faqs'  ),
-		'add_new_item' 		=> __( 'Add New Category', 'ffw_faqs'  ),
-		'new_item_name' 	=> __( 'New Category Name', 'ffw_faqs'  ),
-		'menu_name' 		=> __( 'Categories', 'ffw_faqs'  ),
+	/** Topics */
+	$topic_labels = array(
+		'name' 				=> sprintf( _x( '%s Topics', 'taxonomy general name', 'ffw_faqs' ), ffw_faqs_get_label_singular() ),
+		'singular_name' 	=> _x( 'Topic', 'taxonomy singular name', 'ffw_faqs' ),
+		'search_items' 		=> __( 'Search Topics', 'ffw_faqs'  ),
+		'all_items' 		=> __( 'All Topics', 'ffw_faqs'  ),
+		'parent_item' 		=> __( 'Parent Topic', 'ffw_faqs'  ),
+		'parent_item_colon' => __( 'Parent Topic:', 'ffw_faqs'  ),
+		'edit_item' 		=> __( 'Edit Topic', 'ffw_faqs'  ),
+		'update_item' 		=> __( 'Update Topic', 'ffw_faqs'  ),
+		'add_new_item' 		=> __( 'Add New Topic', 'ffw_faqs'  ),
+		'new_item_name' 	=> __( 'New Topic Name', 'ffw_faqs'  ),
+		'menu_name' 		=> __( 'Topics', 'ffw_faqs'  ),
 	);
 
-	$category_args = apply_filters( 'ffw_faqs_category_args', array(
+	$topic_args = apply_filters( 'topic_args', array(
 			'hierarchical' 		=> true,
-			'labels' 			=> apply_filters('ffw_faqs_category_labels', $category_labels),
+			'labels' 			=> apply_filters('ffw_faqs_topic_labels', $topic_labels),
 			'show_ui' 			=> true,
-			'query_var' 		=> 'faq_category',
-			'rewrite' 			=> array('slug' => $slug . '/category', 'with_front' => false, 'hierarchical' => true ),
+			'query_var' 		=> 'faq_topics',
+			'rewrite' 			=> array('slug' => $slug . '/topic', 'with_front' => false, 'hierarchical' => true ),
 			'capabilities'  	=> array( 'manage_terms','edit_terms', 'assign_terms', 'delete_terms' ),
 			'show_admin_column'	=> true
 		)
 	);
-	register_taxonomy( 'faq_category', array('ffw_faqs'), $category_args );
-	register_taxonomy_for_object_type( 'faq_category', 'ffw_faqs' );
+	register_taxonomy( 'faq_topics', array('ffw_faqs'), $topic_args );
+	register_taxonomy_for_object_type( 'faq_topics', 'ffw_faqs' );
 
 }
 add_action( 'init', 'ffw_faqs_setup_taxonomies', 0 );
@@ -207,3 +207,17 @@ function ffw_faqs_updated_messages( $messages ) {
 	return $messages;
 }
 add_filter( 'post_updated_messages', 'ffw_faqs_updated_messages' );
+
+
+add_filter( 'default_content', 'ffw_default_ediotr_content', 10, 2 );
+
+function ffw_default_ediotr_content( $content, $post ) {
+
+    switch( $post->post_type ) {
+        case 'ffw_faqs':
+            $content = 'Enter answer here';
+        break;
+    }
+
+    return $content;
+}

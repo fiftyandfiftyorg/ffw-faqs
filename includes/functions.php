@@ -15,3 +15,5 @@ function ffw_faqs_disable_link()
    return $ffw_faqs_disable;
     
 }
+
+

@@ -1,0 +1,11 @@
+/* Accordion
+================================================== */
+.ffw-faqs-accordion h3.ffw-faqs-accordion-trigger { display: block; color: #555; display: block; padding: 15px 15px 15px 37px; border: 1px solid #ddd; background: #f9f9f9 url("../images/plus.png") no-repeat 15px center; outline: 0; text-transform: none; letter-spacing: normal; font-weight: normal; font-size: 1em; line-height: 1.5em; margin: 10px 0 0 !important; cursor: pointer; }
+.ffw-faqs-accordion h3.ffw-faqs-accordion-trigger a { color: #555; text-decoration: none !important; }
+.ffw-faqs-accordion .ui-state-focus { outline: none }
+.ffw-faqs-accordion .ffw-faqs-accordion-trigger:hover { background-color: #eee; text-decoration: none; }
+.ffw-faqs-accordion .ffw-faqs-accordion-trigger.ui-state-active { background-color: #eee; background-image: url("../images/minus.png"); text-decoration: none; }
+.ffw-faqs-accordion .ffw-faqs-accordion-trigger.ui-state-active a { color: #000 }
+.ffw-faqs-accordion .ui-accordion-content { background-color: #fff; padding: 15px; border: 1px solid #ddd; border-top: 0px; }
+.ffw-faqs-accordion .ui-accordion-content p:last-child { margin: 0px }
+.ffw-faqs-accordion .ui-icon { margin-right: 7px }

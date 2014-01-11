@@ -27,7 +27,7 @@ function ffw_faqs_add_meta_box() {
     foreach ( $post_types as $post_type ) {
 
         /** Download Configuration */
-        add_meta_box( 'campaigninfo', sprintf( __( '%1$s Information', 'edd' ), ffw_faqs_get_label_singular(), ffw_faqs_get_label_plural() ),  'ffw_faq_render_meta_box', $post_type, 'normal', 'default' );
+        //add_meta_box( 'campaigninfo', sprintf( __( '%1$s Information', 'edd' ), ffw_faqs_get_label_singular(), ffw_faqs_get_label_plural() ),  'ffw_faq_render_meta_box', $post_type, 'normal', 'default' );
 
     }
 }
@@ -57,8 +57,7 @@ function ffw_faqs_meta_box_save( $post_id) {
 
     // The default fields that get saved
     $fields = apply_filters( 'ffw_faq_metabox_fields_save', array(
-            'ffw_faq_question',
-            'ffw_faq_answer',
+            ''
         )
     );
 
@@ -100,23 +99,7 @@ function ffw_faq_render_fields( $post )
 {
     global $post, $ffw_faq_settings;
 
-    $question = get_post_meta( $post->ID, 'ffw_faq_question', true);
-    $answer   = get_post_meta( $post->ID, 'ffw_faq_answer', true);
 
-
-    ?>
-    
-    <div class="ffw_faq_information_metabox">
-        <p><strong>Question</strong></p>
-        <p><textarea name="ffw_faq_question" id="ffw_faq_question" cols="30" rows="1" class="widefat" ><?php echo $question ?></textarea></p>
-
-        <p><strong>Answer</strong></p>
-        <p><textarea name="ffw_faq_answer" id="ffw_faq_answer" cols="30" class="widefat" rows="5"><?php echo $answer ?></textarea></p>
-                
-    </div>
-
-
-    <?php
 
 }
 add_action( 'ffw_faq_meta_box_fields', 'ffw_faq_render_fields', 10 );

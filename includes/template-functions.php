@@ -1,6 +1,6 @@
 <?php
 /**
- * Shortcodes
+ * Template Functions
  */
 
 // Exit if accessed directly

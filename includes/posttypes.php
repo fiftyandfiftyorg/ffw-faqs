@@ -64,7 +64,7 @@ function setup_ffw_faqs_post_types() {
 		'has_archive' 		=> $archives,
 		'show_in_nav_menus'	=> true,
 		'hierarchical' 		=> false,
-		'supports' 			=> apply_filters( 'ffw_faqs_supports', array( 'title', 'editor', 'thumbnail' ) ),
+		'supports' 			=> apply_filters( 'ffw_faqs_supports', array( 'title', 'editor', 'excerpt', 'thumbnail' ) ),
 	);
 	register_post_type( 'ffw_faqs', apply_filters( 'ffw_faqs_post_type_args', $faq_args ) );
 	

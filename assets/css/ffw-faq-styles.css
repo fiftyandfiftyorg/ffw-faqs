@@ -9,3 +9,4 @@
 .ffw-faqs-accordion .ui-accordion-content { background-color: #fff; padding: 15px; border: 1px solid #ddd; border-top: 0px; }
 .ffw-faqs-accordion .ui-accordion-content p:last-child { margin: 0px }
 .ffw-faqs-accordion .ui-icon { margin-right: 7px }
+.ffw-faqs-accordion .ffw_faqs_wrap{ text-align: right;  }

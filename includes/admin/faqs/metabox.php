@@ -27,7 +27,8 @@ function ffw_faqs_add_meta_box() {
     foreach ( $post_types as $post_type ) {
 
         /** Download Configuration */
-        //add_meta_box( 'campaigninfo', sprintf( __( '%1$s Information', 'edd' ), ffw_faqs_get_label_singular(), ffw_faqs_get_label_plural() ),  'ffw_faq_render_meta_box', $post_type, 'normal', 'default' );
+        //add_meta_box( 'campaigninfo', sprintf( __( '%1$s Information', 'ffw_faqs' ), ffw_faqs_get_label_singular(), ffw_faqs_get_label_plural() ),  'ffw_faq_render_meta_box', $post_type, 'normal', 'default' );
+        add_meta_box( 'ffwfaqsinfo', sprintf( __( '%1$s Control', 'ffw_faqs' ), ffw_faqs_get_label_singular(), ffw_faqs_get_label_plural() ),  'ffw_faq_render_meta_box', $post_type, 'normal', 'default' );
 
     }
 }
@@ -57,7 +58,7 @@ function ffw_faqs_meta_box_save( $post_id) {
 
     // The default fields that get saved
     $fields = apply_filters( 'ffw_faq_metabox_fields_save', array(
-            ''
+            'ffw_faqs_display_excerpt'
         )
     );
 
@@ -81,7 +82,7 @@ add_action( 'save_post', 'ffw_faqs_meta_box_save' );
  * Campaign Metabox
  *
  * Extensions (as well as the core plugin) can add items to the main download
- * configuration metabox via the `edd_meta_box_fields` action.
+ * configuration metabox via the `ffw_faqs_meta_box_fields` action.
  *
  * @since 1.0
  * @return void
@@ -99,7 +100,14 @@ function ffw_faq_render_fields( $post )
 {
     global $post, $ffw_faq_settings;
 
+    $excerpt_option = get_post_meta( $post->ID, 'ffw_faqs_display_excerpt', true );
 
+
+?>
+    <label for="ffw_faqs_display_excerpt">
+    <input type="checkbox" name="ffw_faqs_display_excerpt" id="ffw_faqs_display_excerpt" value="1" <?php echo checked( 1, $excerpt_option ); ?>> Check to display just the excerpt & link to a detail page.
+    </label>
+<?php
 
 }
 add_action( 'ffw_faq_meta_box_fields', 'ffw_faq_render_fields', 10 );

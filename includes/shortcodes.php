@@ -14,7 +14,9 @@ function ffw_faqs_list_shortcode( $post ){
 
     // Get all the taxonomies for this post type
     $taxonomies = get_object_taxonomies( (object) array( 'post_type' => $post_type ) );
+
     ob_start(); 
+    
     foreach( $taxonomies as $taxonomy ) { 
 
         // Gets every "category" (term) in this taxonomy to get the respective posts
@@ -39,7 +41,19 @@ function ffw_faqs_list_shortcode( $post ){
                         
                     <h3 class="ffw-faqs-accordion-trigger"><a href="#"><?php the_title(); ?></a></h3>
                     <div>
-                    <?php the_content(); ?>
+                    <?php 
+
+                    if( ffw_faqs_is_excerpt_set() ) {
+                        the_excerpt();
+                    ?>
+                    <div class="ffw_faqs_wrap">
+                        <a href="<?php the_permalink(); ?>">Read More</a>
+                    </div>
+                    <?php
+                    } else{
+                        the_content(); 
+                     }
+                    ?>
                     </div>
 
             

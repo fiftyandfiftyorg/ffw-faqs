@@ -16,4 +16,11 @@ function ffw_faqs_disable_link()
     
 }
 
+function ffw_faqs_is_excerpt_set()
+{
+    global $post;
 
+    $excerpt_option = get_post_meta( $post->ID, 'ffw_faqs_display_excerpt', true );
+
+    return $excerpt_option;
+}

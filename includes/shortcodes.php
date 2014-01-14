@@ -10,62 +10,30 @@ function ffw_faqs_list_shortcode( $post ){
 
     global $post;
 
-    $post_type = 'ffw_faqs';
-
-    // Get all the taxonomies for this post type
-    $taxonomies = get_object_taxonomies( (object) array( 'post_type' => $post_type ) );
-
     ob_start(); 
     
-    foreach( $taxonomies as $taxonomy ) { 
+    ffw_faqs_get_template_part( 'faq', 'list' );
 
-        // Gets every "category" (term) in this taxonomy to get the respective posts
-        $terms = get_terms( $taxonomy );
+    $faq_list = ob_get_clean();
 
-        foreach( $terms as $term ) { 
-
-            $args = array(
-                'taxonomy'  => $taxonomy,
-                'term'      => $term->slug,
-                'orderby'   => 'title',
-                'order'     => 'ASC'
-                );
-            $posts = new WP_Query( "taxonomy=$taxonomy&term=$term->slug" );
-            
-            if( $posts->have_posts() ) : ?>
-                <h3><?php echo $term->name; ?></h3>
-                <div class="ffw-faqs-accordion">
-
-                <?php while( $posts->have_posts() ) : $posts->the_post(); ?>
-            
-                        
-                    <h3 class="ffw-faqs-accordion-trigger"><a href="#"><?php the_title(); ?></a></h3>
-                    <div>
-                    <?php 
-
-                    if( ffw_faqs_is_excerpt_set() ) {
-                        the_excerpt();
-                    ?>
-                    <div class="ffw_faqs_wrap">
-                        <a href="<?php the_permalink(); ?>">Read More</a>
-                    </div>
-                    <?php
-                    } else{
-                        the_content(); 
-                     }
-                    ?>
-                    </div>
-
-            
-                <?php endwhile; ?>
-                </div>
-            <?php endif;
-
-        }
-
-    }
-    return ob_get_clean();
+    return $faq_list;
 }
 add_shortcode('faq_list', 'ffw_faqs_list_shortcode');
 
 
+
+function ffw_faqs_search_shortcode( $post ) 
+{
+    global $post, $ffw_faqs_settings;
+
+    ob_start();
+
+    ffw_faqs_get_template_part( 'faq', 'search' );
+
+    $faq_search = ob_get_clean();
+
+    return $faq_search;
+
+
+}
+add_shortcode('faq_search', 'ffw_faqs_search_shortcode');

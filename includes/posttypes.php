@@ -20,6 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  */
 function setup_ffw_faqs_post_types() {
 	global $ffw_faqs_settings;
+	
 	$archives = defined( 'FFW_FAQS_DISABLE_ARCHIVE' ) && FFW_FAQS_DISABLE_ARCHIVE ? false : true;
 
 	//Check to see if anything is set in the settings area.

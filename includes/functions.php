@@ -24,8 +24,3 @@ function ffw_faqs_is_excerpt_set()
 
     return $excerpt_option;
 }
-
-
-if( function_exists('add_interface_taxonomy_order') ){
-    add_interface_taxonomy_order ("faq_topics");
-}

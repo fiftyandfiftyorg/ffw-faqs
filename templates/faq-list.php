@@ -3,7 +3,7 @@
 $post_type = 'ffw_faqs';
 
     // Get all the taxonomies for this post type
-    $taxonomies = get_object_taxonomies( (object) array( 'post_type' => $post_type ) );
+    $taxonomies = get_object_taxonomies( (object) array( 'post_type' => $post_type, 'orderby' => 'menu_order' ) );
 
     foreach( $taxonomies as $taxonomy ) { 
 

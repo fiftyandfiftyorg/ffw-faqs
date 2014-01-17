@@ -59,6 +59,7 @@ function setup_ffw_faqs_post_types() {
 		'show_ui' 			=> true,
 		'show_in_menu' 		=> true,
 		'menu_icon'         => 'dashicons-editor-help',
+		'menu_position'     => '34.4',
 		'query_var' 		=> true,
 		'rewrite' 			=> $rewrite,
 		'map_meta_cap'      => true,

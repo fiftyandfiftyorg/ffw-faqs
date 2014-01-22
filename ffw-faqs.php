@@ -65,7 +65,7 @@ final class FFW_FAQS {
   private function setup_constants() {
     // Plugin version
     if ( ! defined( 'FFW_FAQS_VERSION' ) )
-      define( 'FFW_FAQS_VERSION', '1.0' );
+      define( 'FFW_FAQS_VERSION', '1.1' );
 
     // Plugin Folder Path
     if ( ! defined( 'FFW_FAQS_PLUGIN_DIR' ) )

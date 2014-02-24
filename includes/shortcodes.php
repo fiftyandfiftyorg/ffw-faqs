@@ -71,8 +71,6 @@ function ffw_faqs_list_shortcode( $atts, $content=null){
         
             <?php endwhile; wp_reset_postdata(); ?>
             </div>
-        <?php else : ?>
-            <p>Looks like no FAQs have been added, yet.</p>
         <?php endif;
 
     } wp_reset_query();

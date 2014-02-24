@@ -29,9 +29,12 @@ function ffw_faqs_list_shortcode( $atts, $content=null){
 
     $terms = get_terms( 'faq_topics', $term_args );
     
-
+     ob_start();
+     
     foreach( $terms as $term ) { 
 
+       
+        
         $args = array(
             'taxonomy'  => 'faq_topics',
             'term'      => $term->slug,
@@ -40,39 +43,37 @@ function ffw_faqs_list_shortcode( $atts, $content=null){
             );
         $faqs = new WP_Query( $args );
         
-        if( $faqs->have_posts() ) : ?>
+
+        if( $faqs->have_posts() ) :  ?>
+
             <h3><?php echo $term->name; ?></h3>
             
-            <?php ob_start(); ?>
-            
             <div class="ffw-faqs-accordion">
-
             <?php while( $faqs->have_posts() ) : $faqs->the_post(); ?>
         
                     
                 <h3 class="ffw-faqs-accordion-trigger"><a href="#"><?php the_title(); ?></a></h3>
                 <div>
-                <?php 
-
-                if( ffw_faqs_is_excerpt_set() ) {
-                    the_excerpt();
-                ?>
-                <div class="ffw_faqs_wrap">
-                    <a href="<?php the_permalink(); ?>">Read More</a>
-                </div>
-                <?php
-                } else{
-                    the_content(); 
-                 }
-                ?>
+                    <?php 
+                    if( ffw_faqs_is_excerpt_set() ) {
+                        the_excerpt();
+                    ?>
+                    <div class="ffw_faqs_wrap">
+                        <a href="<?php the_permalink(); ?>">Read More</a>
+                    </div>
+                    <?php
+                    } else{
+                        the_content(); 
+                    }
+                    ?>
                 </div>
 
         
-            <?php endwhile; ?>
+            <?php endwhile; wp_reset_postdata(); ?>
             </div>
         <?php endif;
 
-    }
+    } wp_reset_query();
 
     $faq_list = ob_get_clean();
 

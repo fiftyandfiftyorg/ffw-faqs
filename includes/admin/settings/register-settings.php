@@ -160,6 +160,13 @@ function ffw_faqs_get_registered_settings() {
                     'type' => 'checkbox',
                     'std' => ''
                 ),
+                'disable_archive' => array(
+                    'id' => 'disable_archive',
+                    'name' => __( 'Disable FAQ Archives Page', 'ffw_faqs' ),
+                    'desc' => __( 'Check to disable FAQ archives page', 'ffw_faqs' ),
+                    'type' => 'checkbox',
+                    'std' => ''
+                ),
             )
         ),
         

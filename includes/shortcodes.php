@@ -68,7 +68,6 @@ function ffw_faqs_list_shortcode( $atts, $content=null){
                     ?>
                 </div>
 
-        
             <?php endwhile; wp_reset_postdata(); ?>
             </div>
         <?php endif;

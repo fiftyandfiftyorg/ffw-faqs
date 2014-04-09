@@ -153,7 +153,14 @@ add_filter( 'enter_title_here', 'ffw_faqs_change_default_title' );
 */
 function ffw_faqs_setup_taxonomies() {
 
-	$slug     = defined( 'FFW_FAQS_SLUG' ) ? FFW_FAQS_SLUG : 'staff';
+	global $ffw_faqs_settings;
+	
+	//Check to see if anything is set in the settings area.
+	if( !empty( $ffw_faqs_settings['faq_slug'] ) ) {
+	    $slug = defined( 'FFW_FAQS_SLUG' ) ? FFW_FAQS_SLUG : $ffw_faqs_settings['faq_slug'];
+	} else {
+	    $slug = defined( 'FFW_FAQS_SLUG' ) ? FFW_FAQS_SLUG : 'faqs';
+	}
 
 	/** Topics */
 	$topic_labels = array(

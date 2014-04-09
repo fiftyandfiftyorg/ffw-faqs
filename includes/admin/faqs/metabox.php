@@ -21,7 +21,8 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  * @return void
  */
 function ffw_faqs_add_meta_box() {
-
+    // global $post;
+    //     print_r($post);
     $post_types = apply_filters( 'ffw_faqs_metabox_post_types' , array( 'ffw_faqs' ) );
 
     foreach ( $post_types as $post_type ) {
@@ -62,7 +63,7 @@ function ffw_faqs_meta_box_save( $post_id) {
         )
     );
 
-
+        print_r($post);
     foreach ( $fields as $field ) {
         if ( ! empty( $_POST[ $field ] ) ) {
             $new = apply_filters( 'ffw_faq_save_' . $field, $_POST[ $field ] );
@@ -71,8 +72,17 @@ function ffw_faqs_meta_box_save( $post_id) {
             //delete_post_meta( $post_id, $field );
         }
     }
+
 }
 add_action( 'save_post', 'ffw_faqs_meta_box_save' );
+
+function testing()
+{
+    global $post;
+
+    print_r($post);
+}
+testing();
 
 
 
@@ -111,3 +121,6 @@ function ffw_faq_render_fields( $post )
 
 }
 add_action( 'ffw_faq_meta_box_fields', 'ffw_faq_render_fields', 10 );
+
+
+
